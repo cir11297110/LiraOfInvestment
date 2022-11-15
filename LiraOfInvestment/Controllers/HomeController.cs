@@ -19,8 +19,8 @@ namespace LiraOfInvestment.Controllers
 
         public IActionResult Index()
         {
-            var model = StockListRepository.GetMainPageItems();
-            return View(model);
+            //var model = StockListRepository.GetMainPageItems();
+            return View();
 
         }
 
