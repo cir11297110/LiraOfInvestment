@@ -1,4 +1,5 @@
-﻿using LiraOfInvestment.Models;
+﻿using LiraOfInvestment.Data.Repositories;
+using LiraOfInvestment.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +8,19 @@ namespace LiraOfInvestment.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private StockListRepository StockListRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(StockListRepository stockListRepository)
         {
-            _logger = logger;
+            StockListRepository = stockListRepository;
         }
+
+       
 
         public IActionResult Index()
         {
-            return View();
+            var model = StockListRepository.GetMainPageItems();
+            return View(model);
 
         }
 

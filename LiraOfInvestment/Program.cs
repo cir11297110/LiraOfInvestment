@@ -1,8 +1,12 @@
+using LiraOfInvestment.Data.Repositories;
+using LiraOfInvestment.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient<StockList>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<StockListRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

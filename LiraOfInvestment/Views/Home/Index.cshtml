@@ -2,7 +2,62 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model IEnumerable<LiraOfInvestment.Models.StockList>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Symbol
+
+            </th>
+            <th>
+                Market Price
+
+            </th>
+            <th>
+                Market Change
+
+            </th>
+            <th>
+                Market
+
+            </th>
+           
+
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var company in Model)
+        {
+            <tr class="clickable-row">
+                <td>
+                    @Html.DisplayFor(modelItem => company.symbol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => company.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => company.exchange)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => company.exchangeShortName)
+                </td>
+                
+
+
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@company.symbol">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@company.symbol">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@company.symbol">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
