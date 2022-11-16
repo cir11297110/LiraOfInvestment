@@ -1,27 +1,41 @@
-using LiraOfInvestment.Data;
-using LiraOfInvestment.Data.Repositories;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Business.Abstract;
+using Business.Concrete;
+using Data.Abstract;
+using Data.Concrete.EfCore;
+
+
 using LiraOfInvestment.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<StockContext>(options => options
-.UseSqlServer(builder.Configuration.GetConnectionString("AzureDatabase"), builder => builder.EnableRetryOnFailure()));
+//builder.Services.AddDbContext<StockContext>(options => {
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("AzureDatabase"));
+//});
+
 // Add services to the container.
-builder.Services.AddHttpClient<StockList>();
+
+//builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder =>
+//{
+//    builder.RegisterModule(new AutoFacBusinessModule());
+//});
+
+
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<StockListRepository>();
+
+builder.Services.AddScoped<IStockDal, EfCoreStockDal>();
+
+builder.Services.AddTransient<IStockService, StockManager>();
+
+
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<StockContext>();
 
-
-
-    SeedDatabase.Initialize(services);
-}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -37,6 +51,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

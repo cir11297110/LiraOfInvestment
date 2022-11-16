@@ -1,5 +1,7 @@
-﻿using LiraOfInvestment.Data.Repositories;
+﻿using Business.Abstract;
+using Data.Concrete.EfCore;
 using LiraOfInvestment.Models;
+using LiraOfInvestment.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,19 +9,23 @@ namespace LiraOfInvestment.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private StockListRepository StockListRepository;
+       
+        private readonly IStockService? _stockService;
+        
+        
 
-        public HomeController(StockListRepository stockListRepository)
+        public HomeController(IStockService stockService)
         {
-            StockListRepository = stockListRepository;
+            stockService = _stockService;
+            
         }
 
-       
+
 
         public IActionResult Index()
         {
-            //var model = StockListRepository.GetMainPageItems();
+           
+           
             return View();
 
         }

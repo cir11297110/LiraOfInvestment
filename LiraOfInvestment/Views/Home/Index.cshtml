@@ -1,8 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-@*
-@model IEnumerable<LiraOfInvestment.Models.StockList>
+﻿
+
+@*@model IEnumerable<Entity.Concrete.Stock>
 
 <table class="table table-hover">
     <thead>
@@ -12,15 +10,23 @@
 
             </th>
             <th>
-                Market Price
+                name
 
             </th>
             <th>
-                Market Change
+                price
 
             </th>
             <th>
-                Market
+                exchange
+
+            </th>
+            <th>
+                exchange short name
+
+            </th>
+            <th>
+                type
 
             </th>
            
@@ -32,30 +38,36 @@
 
     <tbody>
 
-        @foreach (var company in Model)
+        @foreach (var stock in Model)
         {
             
             <tr class="clickable-row">
                 <td>
-                    @Html.DisplayFor(modelItem => company.symbol)
+                    @Html.DisplayFor(modelItem => stock.symbol)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => company.price)
+                    @Html.DisplayFor(modelItem => stock.name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => company.exchange)
+                    @Html.DisplayFor(modelItem => stock.price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => company.exchangeShortName)
+                    @Html.DisplayFor(modelItem => stock.exchange)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => stock.exchangeShortName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => stock.type)
                 </td>
                 
 
 
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@company.symbol">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@company.symbol">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@company.symbol">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@stock.symbol">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@stock.symbol">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@stock.symbol">Delete</a>
                 </td>
 
             </tr>
