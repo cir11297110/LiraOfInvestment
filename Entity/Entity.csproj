@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="DomainModels\" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
 
   <ItemGroup>

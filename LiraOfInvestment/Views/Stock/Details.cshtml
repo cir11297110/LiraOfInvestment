@@ -1,0 +1,55 @@
+﻿@model Entity.Concrete.StockDetail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Exchange
+            </th>
+            <th>
+                Exchange Short Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.symbol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.summaryDetail.dayHigh.fmt)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.exchange)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.exchangeShortName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.symbol">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.symbol">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.symbol">Delete</a>
+                </td>*@
+            </tr>
+        
+    </tbody>
+</table>
+

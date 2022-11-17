@@ -13,5 +13,7 @@ namespace Business.Abstract
     {
         List<Stock> GetAll();
         List<Stock> GetBySymbol(string symbol);
+        StockDetail GetDetail(string symbol);
+        
     }
 }

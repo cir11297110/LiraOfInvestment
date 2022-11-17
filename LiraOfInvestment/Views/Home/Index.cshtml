@@ -1,76 +1,16 @@
-﻿
-
-@*@model IEnumerable<Entity.Concrete.Stock>
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>
-                Symbol
-
-            </th>
-            <th>
-                name
-
-            </th>
-            <th>
-                price
-
-            </th>
-            <th>
-                exchange
-
-            </th>
-            <th>
-                exchange short name
-
-            </th>
-            <th>
-                type
-
-            </th>
-           
-
-
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        @foreach (var stock in Model)
-        {
-            
-            <tr class="clickable-row">
-                <td>
-                    @Html.DisplayFor(modelItem => stock.symbol)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => stock.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => stock.price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => stock.exchange)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => stock.exchangeShortName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => stock.type)
-                </td>
-                
+﻿@model LiraOfInvestment.ViewModels.MainPageItems
 
 
 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@stock.symbol">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@stock.symbol">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@stock.symbol">Delete</a>
-                </td>
 
-            </tr>
+<div>
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    @foreach (var item in Model.RecommendedStocks.finance.result){
+        @for(int i=0;i<item.count;i++){
+        <a class="btn btn-link" asp-controller="Stock" asp-action="Details" asp-route-id="@item.quotes.ElementAt(i).symbol" role="button">@item.quotes.ElementAt(i).symbol</a>
         }
-    </tbody>
-</table>*@
+    }
+</div>

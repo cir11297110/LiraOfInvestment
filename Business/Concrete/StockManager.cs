@@ -28,5 +28,10 @@ namespace Business.Concrete
         {
             return _stockDal.GetList(p => p.symbol == symbol);
         }
+
+        public StockDetail GetDetail(string symbol)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

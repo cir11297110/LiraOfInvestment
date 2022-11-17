@@ -2,13 +2,41 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using YahooFinanceApi;
 
 namespace Data.Concrete.EfCore
 {
     public class SeedDatabase
     {
-        public static void Initialize(IServiceProvider serviceProvider)
+        public static async Task<int> GetStockData(string symbol, DateTime startDate, DateTime endDate)
         {
+            
+
+            try
+            {
+                var historicData=await Yahoo.GetHistoricalAsync(symbol, startDate, endDate);
+                var security = await Yahoo.Symbols(symbol).Fields(Field.LongName).QueryAsync();
+                var ticker = security[symbol];
+                var companyName = ticker[Field.LongName];
+                for(var i = 0; i < historicData.Count; i++)
+                {
+                    Console.WriteLine(companyName + historicData.ElementAt(i).Close);
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Gelemedi");
+            }
+            return 1;
+        }
+        public static async void Initialize(IServiceProvider serviceProvider)
+        {
+            DateTime endDate = DateTime.Today;
+            DateTime startDate = DateTime.Today.AddDays(-2);
+
+           var awaiter=await GetStockData("AAPL",startDate,endDate);
+            Console.WriteLine(awaiter);
+            //GetStockData("aapl",endDate,startDate);
             //using (var context = new StockContext(
             //    serviceProvider.GetRequiredService<DbContextOptions<StockContext>>()))
             //{
