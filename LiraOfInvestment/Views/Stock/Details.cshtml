@@ -1,7 +1,7 @@
 ﻿@model Entity.Concrete.StockDetail
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @Html.DisplayFor(modelItem => modelItem.symbol);
 }
 
 <table class="table">
@@ -29,27 +29,54 @@
         
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => modelItem.symbol)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => modelItem.summaryDetail.dayHigh.fmt)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.exchange)
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.summaryDetail.dayLow.fmt)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.exchangeShortName)
+                    @Html.DisplayFor(modelItem => modelItem.summaryDetail.volume.fmt)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.type)
+                    @Html.DisplayFor(modelItem => modelItem.price.regularMarketPreviousClose.fmt)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.symbol">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.symbol">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.symbol">Delete</a>
-                </td>*@
+                    @Html.DisplayFor(modelItem => modelItem.price.regularMarketChangePercent.fmt)
+                </td>
+                
             </tr>
         
     </tbody>
 </table>
+
+<ul class="list-group list-group-horizontal">
+    <li class="list-group-item">Day High</li>
+    <li class="list-group-item">@Html.DisplayFor(modelItem => modelItem.summaryDetail.dayHigh.fmt)</li>
+    
+</ul>
+<ul class="list-group list-group-horizontal-sm">
+    <li class="list-group-item">Day Low</li>
+    <li class="list-group-item">@Html.DisplayFor(modelItem => modelItem.summaryDetail.dayLow.fmt)</li>
+    
+</ul>
+<ul class="list-group list-group-horizontal-md">
+    <li class="list-group-item">Volume</li>
+    <li class="list-group-item">@Html.DisplayFor(modelItem => modelItem.summaryDetail.volume.fmt)</li>
+    
+</ul>
+<ul class="list-group list-group-horizontal-lg">
+    <li class="list-group-item">Previous Close</li>
+    <li class="list-group-item">@Html.DisplayFor(modelItem => modelItem.price.regularMarketPreviousClose.fmt)</li>
+    
+</ul>
+<ul class="list-group list-group-horizontal-xl">
+    <li class="list-group-item">Change Perrcent</li>
+    <li class="list-group-item">@Html.DisplayFor(modelItem => modelItem.price.regularMarketChangePercent.fmt)</li>
+    
+</ul>
+<ul class="list-group list-group-horizontal-xxl">
+    <li class="list-group-item">3 Month Volume Average</li>
+    <li class="list-group-item">@Html.DisplayFor(modelItem => modelItem.price.averageDailyVolume3Month.fmt)</li>
+    
+</ul>
 

@@ -25,6 +25,10 @@ namespace LiraOfInvestment.Controllers
             };
             return View(model);
         }
+
+
+
+
         // GET: StockController/Details/AAPL
         [HttpGet("stock/details/{symbol}")]
         public  IActionResult Details(string symbol)

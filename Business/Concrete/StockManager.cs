@@ -24,6 +24,11 @@ namespace Business.Concrete
             return _stockDal.GetList();
         }
 
+        public Stock GetBySearch(string search)
+        {
+            return _stockDal.Get(p=>p.symbol.Contains(search));
+        }
+
         public List<Stock> GetBySymbol(string symbol)
         {
             return _stockDal.GetList(p => p.symbol == symbol);

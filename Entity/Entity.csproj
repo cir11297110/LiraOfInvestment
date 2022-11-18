@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Documents\Visual Studio 2022\Projects\IpeksShop\Core\Core.csproj" />
+    <ProjectReference Include="C:\Users\yigit\OneDrive\Masaüstü\Projects\DotNET\Azure\Web App Deploy to Azure Service\LiraOfInvestment\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>
